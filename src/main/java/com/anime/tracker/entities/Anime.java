@@ -14,6 +14,8 @@ public class Anime extends Item
 	private LocalDate creation_year;
 	private boolean is_ongoing;
 
+	public Anime() {}
+
 	public Anime(String author, String genre, Integer numSeasons, LocalDate creation_year, boolean is_ongoing)
 	{
 		this.author = author;
@@ -63,7 +65,7 @@ public class Anime extends Item
 		this.numSeasons = numSeasons;
 	}
 
-	public void setCreationgYear(LocalDate creation_year)
+	public void setCreationYear(LocalDate creation_year)
 	{
 		this.creation_year = creation_year;
 	}
