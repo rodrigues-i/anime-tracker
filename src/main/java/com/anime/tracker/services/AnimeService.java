@@ -1,6 +1,7 @@
 package com.anime.tracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public class AnimeService
 	{
 		List<Anime> animes = this.animeRepository.findAll();
 		return animes;
+	}
+
+	public Optional<Anime> getAnimeById(Long id) {
+		return this.animeRepository.findById(id);
 	}
 }
