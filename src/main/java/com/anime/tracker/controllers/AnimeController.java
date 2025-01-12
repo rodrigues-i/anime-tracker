@@ -9,8 +9,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anime.tracker.entities.Anime;
@@ -42,5 +46,18 @@ public class AnimeController {
 		return EntityModel.of(anime,
 				linkTo(methodOn(AnimeController.class).getAnimeById(anime.getId())).withSelfRel(),
 				linkTo(methodOn(AnimeController.class).getAnimes()).withRel("animes"));
+	}
+
+	@PostMapping("/animes")
+	public ResponseEntity<?> createAnime(@RequestBody Anime anime)
+	{
+		System.out.println(anime);
+		Anime newAnime = this.animeService.createAnime(anime);
+		EntityModel<Anime> entityModel = EntityModel.of(newAnime,
+				linkTo(methodOn(AnimeController.class).getAnimeById(newAnime.getId())).withSelfRel(),
+				linkTo(methodOn(AnimeController.class).getAnimes()).withRel("animes"));
+		return ResponseEntity
+				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+				.body(entityModel);
 	}
 }

@@ -27,4 +27,8 @@ public class AnimeService
 	public Optional<Anime> getAnimeById(Long id) {
 		return this.animeRepository.findById(id);
 	}
+
+	public Anime createAnime(Anime anime) {
+		return this.animeRepository.save(anime);
+	}
 }
