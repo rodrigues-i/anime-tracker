@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,10 +52,23 @@ public class AnimeController {
 	@PostMapping("/animes")
 	public ResponseEntity<?> createAnime(@RequestBody Anime anime)
 	{
-		System.out.println(anime);
 		Anime newAnime = this.animeService.createAnime(anime);
 		EntityModel<Anime> entityModel = EntityModel.of(newAnime,
 				linkTo(methodOn(AnimeController.class).getAnimeById(newAnime.getId())).withSelfRel(),
+				linkTo(methodOn(AnimeController.class).getAnimes()).withRel("animes"));
+		return ResponseEntity
+				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+				.body(entityModel);
+	}
+
+	@PutMapping("/animes/{id}")
+	public ResponseEntity<?> updateAnime(@RequestBody Anime anime, @PathVariable Long id)
+	{
+		Anime updatedAnime = this.animeService.updateAnime(anime, id)
+				.orElseThrow(() -> new AnimeNotFoundException(id));
+
+		EntityModel<Anime> entityModel = EntityModel.of(updatedAnime,
+				linkTo(methodOn(AnimeController.class).getAnimeById(updatedAnime.getId())).withSelfRel(),
 				linkTo(methodOn(AnimeController.class).getAnimes()).withRel("animes"));
 		return ResponseEntity
 				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())

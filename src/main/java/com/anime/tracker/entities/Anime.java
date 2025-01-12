@@ -15,11 +15,11 @@ public class Anime extends Item
 	private String genre;
 	private Integer numSeasons;
 	private LocalDate creation_year;
-	private boolean is_ongoing;
+	private Boolean is_ongoing;
 
 	public Anime() {}
 
-	public Anime(String author, String genre, Integer numSeasons, LocalDate creation_year, boolean is_ongoing)
+	public Anime(String author, String genre, Integer numSeasons, LocalDate creation_year, Boolean is_ongoing)
 	{
 		this.author = author;
 		this.genre = genre;
@@ -48,7 +48,7 @@ public class Anime extends Item
 		return this.creation_year;
 	}
 
-	public boolean getOnGoing()
+	public Boolean getOnGoing()
 	{
 		return this.is_ongoing;
 	}
@@ -73,7 +73,7 @@ public class Anime extends Item
 		this.creation_year = creation_year;
 	}
 
-	public void setIsOnGoing(boolean is_ongoing)
+	public void setIsOnGoing(Boolean is_ongoing)
 	{
 		this.is_ongoing = is_ongoing;
 	}
