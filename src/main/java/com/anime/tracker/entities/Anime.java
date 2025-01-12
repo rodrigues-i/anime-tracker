@@ -11,9 +11,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Anime extends Item
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String author;
 	private String genre;
 	private Integer numSeasons;
@@ -29,11 +26,6 @@ public class Anime extends Item
 		this.numSeasons = numSeasons;
 		this.creation_year = creation_year;
 		this.is_ongoing = is_ongoing;
-	}
-
-	public Long getId()
-	{
-		return this.id;
 	}
 
 	public String getAuthor()
@@ -59,11 +51,6 @@ public class Anime extends Item
 	public boolean getOnGoing()
 	{
 		return this.is_ongoing;
-	}
-
-	public void setId(Long id)
-	{
-		this.id = id;
 	}
 
 	public void setAuthor(String author)
