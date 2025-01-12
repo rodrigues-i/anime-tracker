@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.anime.tracker.entities.Anime;
 import com.anime.tracker.repositories.AnimeRepository;
@@ -55,5 +53,10 @@ public class AnimeService
 
 		Anime updatedAnime = this.animeRepository.save(animeToBeUpdated);
 		return Optional.of(updatedAnime);
+	}
+
+	public void deleteAnime(Long id) {
+		this.animeRepository.deleteById(id);
+
 	}
 }
