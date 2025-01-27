@@ -32,13 +32,15 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
+	private int totalWatchedEpisodes;
 
 	public User() {}
 
-	public User(String name, Gender gender, String username, String password, Set<Role> roles) {
+	public User(String name, Gender gender, String username, String password, Set<Role> roles, int totalWatchedEpisodes) {
 		super();
 		this.name = name;
 		this.gender = gender;
+		this.totalWatchedEpisodes = totalWatchedEpisodes;
 	}
 
 	public Long getId() {
@@ -73,6 +75,10 @@ public class User {
 		return this.password;
 	}
 
+	public int getTotalWatchedEpisodes() {
+		return this.totalWatchedEpisodes;
+	}
+
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
@@ -90,6 +96,10 @@ public class User {
 		this.roles = roles;
 	}
 
+	public void setTotalWatchedEpisodes(int totalWatchedEpisodes) {
+		this.totalWatchedEpisodes = totalWatchedEpisodes;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(gender, id, name, roles);
@@ -105,11 +115,11 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return gender == other.gender && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(roles, other.roles);
+				&& Objects.equals(roles, other.roles) && Objects.equals(totalWatchedEpisodes, other.totalWatchedEpisodes);
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", gender=" + gender + ", role=" + roles + "]";
+		return "User [id=" + id + ", name=" + name + ", gender=" + gender + ", role=" + roles + ", totalWatchedEpisodes=" + totalWatchedEpisodes + "]";
 	}
 }

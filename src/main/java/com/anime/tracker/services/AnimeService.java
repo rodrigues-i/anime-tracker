@@ -44,12 +44,12 @@ public class AnimeService
 			animeToBeUpdated.setAuthor(anime.getAuthor());
 		if(anime.getGenre() != null)
 			animeToBeUpdated.setGenre(anime.getGenre());
-		if(anime.getCreationYear() != null)
-			animeToBeUpdated.setCreationYear(anime.getCreationYear());
-		if(anime.getNumSeasons() != null)
+		if(anime.getReleaseYear() != null)
+			animeToBeUpdated.setReleaseYear(null);
+		if(anime.getNumSeasons() != 0)
 			animeToBeUpdated.setNumSeasons(anime.getNumSeasons());
-		if(anime.getOnGoing() != null)
-			animeToBeUpdated.setIsOnGoing(anime.getOnGoing());
+		if(anime.getIs_ongoing() != null)
+			animeToBeUpdated.setIs_ongoing(anime.getIs_ongoing());
 
 		Anime updatedAnime = this.animeRepository.save(animeToBeUpdated);
 		return Optional.of(updatedAnime);
