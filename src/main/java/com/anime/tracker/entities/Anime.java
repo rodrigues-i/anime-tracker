@@ -19,112 +19,135 @@ public class Anime
 	private String title;
 	private String author;
 	private String genre;
-	private Integer numSeasons;
-	private LocalDate creation_year;
+	private String studio;
+	private int episodes;
+	private int numSeasons;
+	private LocalDate releaseYear;
+	private String synopsis;
 	private Boolean is_ongoing;
 
 	public Anime() {}
 
-	public Anime(String title, String author, String genre, Integer numSeasons, LocalDate creation_year, Boolean is_ongoing)
-	{
+	public Anime(Long id, String title, String author, String genre, String studio, int episodes, int numSeasons,
+			LocalDate releaseYear, String synopsis, Boolean is_ongoing) {
+		super();
+		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
+		this.studio = studio;
+		this.episodes = episodes;
 		this.numSeasons = numSeasons;
-		this.creation_year = creation_year;
+		this.releaseYear = releaseYear;
+		this.synopsis = synopsis;
 		this.is_ongoing = is_ongoing;
 	}
-	
+
 	public Long getId() {
-		return this.id;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public String getAuthor()
-	{
-		return this.author;
-	}
-
-	public String getGenre()
-	{
-		return this.genre;
-	}
-
-	public Integer getNumSeasons()
-	{
-		return this.numSeasons;
-	}
-
-	public LocalDate getCreationYear()
-	{
-		return this.creation_year;
-	}
-
-	public Boolean getOnGoing()
-	{
-		return this.is_ongoing;
+		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public void setAuthor(String author)
-	{
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	public void setGenre(String genre)
-	{
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
-	public void setNumSeasons(Integer numSeasons)
-	{
+	public String getStudio() {
+		return studio;
+	}
+
+	public void setStudio(String studio) {
+		this.studio = studio;
+	}
+
+	public int getEpisodes() {
+		return episodes;
+	}
+
+	public void setEpisodes(int episodes) {
+		this.episodes = episodes;
+	}
+
+	public int getNumSeasons() {
+		return numSeasons;
+	}
+
+	public void setNumSeasons(int numSeasons) {
 		this.numSeasons = numSeasons;
 	}
 
-	public void setCreationYear(LocalDate creation_year)
-	{
-		this.creation_year = creation_year;
+	public LocalDate getReleaseYear() {
+		return releaseYear;
 	}
 
-	public void setIsOnGoing(Boolean is_ongoing)
-	{
+	public void setReleaseYear(LocalDate releaseYear) {
+		this.releaseYear = releaseYear;
+	}
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	public Boolean getIs_ongoing() {
+		return is_ongoing;
+	}
+
+	public void setIs_ongoing(Boolean is_ongoing) {
 		this.is_ongoing = is_ongoing;
 	}
 
 	@Override
-	public boolean equals(Object o)
-	{
-		if(this == o)
+	public int hashCode() {
+		return Objects.hash(author, episodes, genre, id, is_ongoing, numSeasons, releaseYear, studio, synopsis, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		if(o == null || getClass() != o.getClass())
+		if (obj == null)
 			return false;
-		Anime anime = (Anime) o;
-		return Objects.equals(this.author, anime.author)
-				&& Objects.equals(this.genre, anime.genre) && Objects.equals(this.numSeasons, anime.numSeasons)
-				&& Objects.equals(this.creation_year, anime.creation_year) && Objects.equals(this.is_ongoing, anime.is_ongoing);
+		if (getClass() != obj.getClass())
+			return false;
+		Anime other = (Anime) obj;
+		return Objects.equals(author, other.author) && episodes == other.episodes && Objects.equals(genre, other.genre)
+				&& Objects.equals(id, other.id) && Objects.equals(is_ongoing, other.is_ongoing)
+				&& numSeasons == other.numSeasons && Objects.equals(releaseYear, other.releaseYear)
+				&& Objects.equals(studio, other.studio) && Objects.equals(synopsis, other.synopsis)
+				&& Objects.equals(title, other.title);
 	}
 
 	@Override
-	public int hashCode()
-	{
-		return Objects.hash(this.author, this.genre, this.numSeasons, this.creation_year, this.is_ongoing);
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Anime{" + "id=" + this.getId() + ", name'" + this.getTitle() + '\'' + ", author='" + this.author + '\''
-				+ ", genre='" + this.genre + '\'' + ", numSeasons=" + this.numSeasons + ", creation_date=" + this.creation_year
-				+ ", is_ongoing" + this.is_ongoing + '}';
+	public String toString() {
+		return "Anime [id=" + id + ", title=" + title + ", author=" + author + ", genre=" + genre + ", studio=" + studio
+				+ ", episodes=" + episodes + ", numSeasons=" + numSeasons + ", releaseYear=" + releaseYear
+				+ ", synopsis=" + synopsis + ", is_ongoing=" + is_ongoing + "]";
 	}
 }
