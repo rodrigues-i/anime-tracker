@@ -4,12 +4,19 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "animes")
-public class Anime extends Item
+public class Anime
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String title;
 	private String author;
 	private String genre;
 	private Integer numSeasons;
@@ -18,13 +25,22 @@ public class Anime extends Item
 
 	public Anime() {}
 
-	public Anime(String author, String genre, Integer numSeasons, LocalDate creation_year, Boolean is_ongoing)
+	public Anime(String title, String author, String genre, Integer numSeasons, LocalDate creation_year, Boolean is_ongoing)
 	{
+		this.title = title;
 		this.author = author;
 		this.genre = genre;
 		this.numSeasons = numSeasons;
 		this.creation_year = creation_year;
 		this.is_ongoing = is_ongoing;
+	}
+	
+	public Long getId() {
+		return this.id;
+	}
+
+	public String getTitle() {
+		return this.title;
 	}
 
 	public String getAuthor()
@@ -50,6 +66,14 @@ public class Anime extends Item
 	public Boolean getOnGoing()
 	{
 		return this.is_ongoing;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setAuthor(String author)
@@ -99,7 +123,7 @@ public class Anime extends Item
 	@Override
 	public String toString()
 	{
-		return "Anime{" + "id=" + this.getId() + ", name'" + this.getName() + '\'' + ", author='" + this.author + '\''
+		return "Anime{" + "id=" + this.getId() + ", name'" + this.getTitle() + '\'' + ", author='" + this.author + '\''
 				+ ", genre='" + this.genre + '\'' + ", numSeasons=" + this.numSeasons + ", creation_date=" + this.creation_year
 				+ ", is_ongoing" + this.is_ongoing + '}';
 	}

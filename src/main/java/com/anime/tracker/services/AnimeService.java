@@ -38,8 +38,8 @@ public class AnimeService
 		if(optionalItem.isEmpty())
 			return optionalItem;
 		Anime animeToBeUpdated = optionalItem.get();
-		if(anime.getName() != null)
-			animeToBeUpdated.setName(anime.getName());
+		if(anime.getTitle() != null)
+			animeToBeUpdated.setTitle(anime.getTitle());
 		if(anime.getAuthor() != null)
 			animeToBeUpdated.setAuthor(anime.getAuthor());
 		if(anime.getGenre() != null)
