@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.anime.tracker.entities.Anime;
+import com.anime.tracker.exceptions.AnimeNotFoundException;
 import com.anime.tracker.repositories.AnimeRepository;
 
 @Service
@@ -18,7 +19,7 @@ public class AnimeService
 		this.animeRepository = animeRepository;
 	}
 
-	public List<Anime> getAnime()
+	public List<Anime> getAnimes()
 	{
 		List<Anime> animes = this.animeRepository.findAll();
 		return animes;
@@ -36,7 +37,7 @@ public class AnimeService
 	{
 		Optional<Anime> optionalItem = this.animeRepository.findById(id);
 		if(optionalItem.isEmpty())
-			return optionalItem;
+			throw new AnimeNotFoundException(id);
 		Anime animeToBeUpdated = optionalItem.get();
 		if(anime.getTitle() != null)
 			animeToBeUpdated.setTitle(anime.getTitle());
@@ -56,6 +57,10 @@ public class AnimeService
 	}
 
 	public void deleteAnime(Long id) {
+		Optional<Anime> optionalItem = this.animeRepository.findById(id);
+		if(optionalItem.isEmpty())
+			throw new AnimeNotFoundException(id);
+
 		this.animeRepository.deleteById(id);
 
 	}

@@ -33,7 +33,7 @@ public class AnimeController {
 	@GetMapping("/animes")
 	public CollectionModel<EntityModel<Anime>> getAnimes()
 	{
-		List<EntityModel<Anime>> animes = this.animeService.getAnime()
+		List<EntityModel<Anime>> animes = this.animeService.getAnimes()
 				.stream().map(anime -> EntityModel.of(anime,
 						linkTo(methodOn(AnimeController.class).getAnimeById(anime.getId())).withSelfRel(),
 						linkTo(methodOn(AnimeController.class).getAnimes()).withRel("animes")))
