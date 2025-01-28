@@ -46,4 +46,10 @@ public class GlobalExceptionsHandler
 	String seasonNotFoundException(SeasonNotFoundException ex) {
 		return ex.getMessage();
 	}
+
+	@ExceptionHandler(WatchListNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String watchListNotFoundException(WatchListNotFoundException ex) {
+		return ex.getMessage();
+	}
 }
