@@ -36,7 +36,7 @@ public class AnimeEntryController {
 		List<EntityModel<AnimeEntry>> animeEntries = animeEntryService.getAnimeEntries()
 				.stream().map(animeEntry -> EntityModel.of(animeEntry,
 						linkTo(methodOn(AnimeEntryController.class).getAnimeEntryById(animeEntry.getId())).withSelfRel(),
-						linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("anime entries")))
+						linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("animeEntries")))
 				.collect(Collectors.toUnmodifiableList());
 
 		return CollectionModel.of(animeEntries, linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withSelfRel());
@@ -49,7 +49,7 @@ public class AnimeEntryController {
 
 		return EntityModel.of(animeEntry,
 				linkTo(methodOn(AnimeEntryController.class).getAnimeEntryById(animeEntry.getId())).withSelfRel(),
-				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("anime entries"));
+				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("animeEntries"));
 	}
 
 	@PostMapping("/animeEntry")
@@ -57,7 +57,7 @@ public class AnimeEntryController {
 		AnimeEntry newAnimeEntry = animeEntryService.createAnimeEntry(animeEntry);
 		EntityModel<AnimeEntry> entityModel = EntityModel.of(newAnimeEntry,
 				linkTo(methodOn(AnimeEntryController.class).getAnimeEntryById(newAnimeEntry.getId())).withSelfRel(),
-				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("anime entries"));
+				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("animeEntries"));
 		return ResponseEntity
 				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
 				.body(entityModel);
@@ -69,7 +69,7 @@ public class AnimeEntryController {
 
 		EntityModel<AnimeEntry> entityModel = EntityModel.of(updatedAnimeEntry,
 				linkTo(methodOn(AnimeEntryController.class).getAnimeEntryById(updatedAnimeEntry.getId())).withSelfRel(),
-				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("anime entries"));
+				linkTo(methodOn(AnimeEntryController.class).getAnimeEntries()).withRel("animeEntries"));
 
 		return ResponseEntity
 				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
