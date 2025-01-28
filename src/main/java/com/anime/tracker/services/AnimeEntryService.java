@@ -53,7 +53,7 @@ public class AnimeEntryService {
 
 		Optional<AnimeEntry> animeEntry = animeEntryRepository.findById(animeEntryId);
 		if(animeEntry.isEmpty())
-			new AnimeEntryNotFoundException(animeEntryId);
+			throw new AnimeEntryNotFoundException(animeEntryId);
 		animeEntryRepository.deleteById(animeEntryId);
 	}
 }
