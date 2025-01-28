@@ -34,4 +34,16 @@ public class GlobalExceptionsHandler
 	String episodeNotFoundException(EpisodeNotFoundException ex) {
 		return ex.getMessage();
 	}
+
+	@ExceptionHandler(ReviewNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String reviewNotFoundException(ReviewNotFoundException ex) {
+		return ex.getMessage();
+	}
+
+	@ExceptionHandler(ReviewNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String seasonNotFoundException(SeasonNotFoundException ex) {
+		return ex.getMessage();
+	}
 }
