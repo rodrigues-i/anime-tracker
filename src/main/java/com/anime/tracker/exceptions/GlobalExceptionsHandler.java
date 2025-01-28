@@ -22,4 +22,10 @@ public class GlobalExceptionsHandler
 	{
 		return ex.getMessage();
 	}
+
+	@ExceptionHandler(AnimeEntryNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String animeEntryNotFoundException(AnimeEntryNotFoundException ex) {
+		return ex.getMessage();
+	}
 }
