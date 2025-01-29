@@ -54,7 +54,7 @@ public class EpisodeController {
 	@PostMapping("/episodes")
 	public ResponseEntity<EntityModel<Episode>> createEpisode(@RequestBody Episode episode) {
 		Episode newEpisode = episodeService.createEpisode(episode);
-		EntityModel<Episode> entityModel = EntityModel.of(episode,
+		EntityModel<Episode> entityModel = EntityModel.of(newEpisode,
 				linkTo(methodOn(EpisodeController.class).getEpisodeById(episode.getId())).withSelfRel(),
 				linkTo(methodOn(EpisodeController.class).getEpisodes()).withRel("episodes"));
 		return ResponseEntity
